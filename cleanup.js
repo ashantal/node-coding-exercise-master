@@ -1,13 +1,10 @@
-var fs = require('fs');
-let raw = fs.readFileSync('mock_application.json');
-
 function dedupe(list)
 {
     let items = {}; //key dictionary 
     let valid_items = []; //list of valid items
     list.forEach(o=>{
         if('undefined' == typeof items[o.key]){
-            valid_items.push(o);  //add only first item to the list 
+            valid_items.push(o);  //add only first item to the list and ignore rest
             items[o.key] = o._id; //index
         } 
         else{
@@ -19,6 +16,11 @@ function dedupe(list)
     return valid_items; //deduped
 }
 
+/* 
+Helper function to iterate through objects and fields collections within schema.versions 
+to keep only first item and ignore duplicate items
+TODO : check to make sure schema is a valid object and has a version, objects and filds
+*/
 function Sanitize(schema){
     schema.versions.forEach(v => {  
         v.objects =  dedupe(v.objects);  
@@ -26,10 +28,9 @@ function Sanitize(schema){
             o.fields = dedupe(o.fields); 
         });
     });
+    return schema;
 }
 
+module.exports = {Sanitize};
 
-var schema = Sanitize(JSON.parse(raw));
-let data = JSON.stringify(schema);
-fs.writeFileSync('out.json', data);
 
