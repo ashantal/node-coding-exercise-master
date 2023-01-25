@@ -25,11 +25,12 @@ Test.js reads source data from a mock json file and serilizes sanitized data to 
 Cleanup.js implements the Sanitize module that iterates through all records and the fields inside each record to discard duplicate entries. 
 The Sanitize method executes dedupe helper function for list of records and feilds to drop duplicate items from the list and replaces the source list with deduped list.
 
-## Dedupe function uses a dictionary object to identify and drop duplicate items using item's key. 
+## Dedupe function 
+This function relies on a dictionary object to identify and drop duplicate items using item's key. 
 ### Steps
 - takes a list of items  
-- Iterate through the items and add each item to validated list if the item key is not found in the dictionary object 
-- Drops the item if the key already exists in the dictionary object othewise add item's key to dictionary 
+- Iterates through the items and adds each item to validated list if the item's key is not found in the dictionary 
+- Skips the item if it's key already exists in the dictionary othewise add item's key to dictionary 
 - returns the new list back
 
 ## TO DO:
