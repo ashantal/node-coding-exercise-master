@@ -18,11 +18,11 @@ Test.js reads source data from a mock json file and serilizes sanitized data to 
 - Load json data from source mock_application.json 
 - Iterate through list of records and discard duplicate records
 - Iterate through fields withing each record and discard duplicate fields
-- Serilize Sanitized data to output.json
+- Serilize sanitized data to output.json
 
 
 ## Algorithm
-Cleanup.js implement the Sanitize module that iterates through all records and the fields inside each record to discard duplicate entries. 
+Cleanup.js implements the Sanitize module that iterates through all records and the fields inside each record to discard duplicate entries. 
 The Sanitize method executes dedupe helper function for list of records and feilds to drop duplicate items from the list and replaces the source list with deduped list.
 
 ## Dedupe function relys on a dictionary object to identify and drop duplicate items using item's key. 
